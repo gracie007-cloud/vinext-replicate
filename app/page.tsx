@@ -64,8 +64,8 @@ export default function Home() {
     <div className="container max-w-2xl mx-auto p-5">
       <h1 className="py-6 text-center font-bold text-2xl">
         Dream something with{" "}
-        <a href="https://replicate.com/black-forest-labs/flux-schnell?utm_source=project&utm_project=getting-started">
-          Flux Schnell
+        <a href="https://replicate.com/black-forest-labs/flux-2-klein-9b?utm_source=project&utm_project=getting-started">
+          FLUX.2 [klein]
         </a>
       </h1>
 
