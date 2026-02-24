@@ -24,17 +24,13 @@ Install dependencies:
 npm install
 ```
 
-Create a git-ignored text file for storing secrets:
+Create a `.dev.vars` file for local secrets (this is how Cloudflare Workers handle environment variables in development):
 
 ```
-cp .env.example .env.local
+echo "REPLICATE_API_TOKEN=<your-token-here>" > .dev.vars
 ```
 
-Add your [Replicate API token](https://replicate.com/account/api-tokens) to `.env.local`:
-
-```
-REPLICATE_API_TOKEN=<your-token-here>
-```
+Replace `<your-token-here>` with your [Replicate API token](https://replicate.com/account/api-tokens). The `.dev.vars` file is git-ignored.
 
 Run the development server:
 
@@ -73,7 +69,7 @@ To test webhooks in development, you need a secure tunnel so Replicate can reach
 
 1. [Download and set up `ngrok`](https://replicate.com/docs/webhooks#testing-your-webhook-code)
 2. Run ngrok: `ngrok http 5173`
-3. Copy the ngrok URL into `.env.local`: `NGROK_HOST="https://your-id.ngrok.app"`
+3. Add the ngrok URL to `.dev.vars`: `NGROK_HOST=https://your-id.ngrok.app`
 4. Leave ngrok running
 5. In a separate terminal, run `npm run dev`
 6. Open [localhost:5173](http://localhost:5173) and enter a prompt
@@ -90,7 +86,7 @@ npx wrangler secret put WORKER_URL
    ```
    curl -s -X GET -H "Authorization: Bearer $REPLICATE_API_TOKEN" https://api.replicate.com/v1/webhooks/default/secret
    ```
-2. Add the secret to `.env.local`: `REPLICATE_WEBHOOK_SIGNING_SECRET=whsec_...`
+2. Add the secret to `.dev.vars`: `REPLICATE_WEBHOOK_SIGNING_SECRET=whsec_...`
 3. Now webhook requests will be validated in [app/api/webhooks/route.ts](app/api/webhooks/route.ts).
 
 For production:
