@@ -25,7 +25,7 @@ export async function POST(request: Request) {
     webhook?: string;
     webhook_events_filter?: string[];
   } = {
-    model: "black-forest-labs/flux-schnell",
+    model: "black-forest-labs/flux-2-klein-9b",
     input: { prompt },
   };
 
